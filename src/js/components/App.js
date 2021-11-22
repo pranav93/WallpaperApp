@@ -3,7 +3,13 @@ import React from "react";
 const App = () => (
   <>
     <h1>App Component</h1>
-    <button>Notify</button>
+    <button
+      onClick={() => {
+        electron.notificationApi.sendNotification("My custom notification");
+      }}
+    >
+      Notify
+    </button>
   </>
 );
 
