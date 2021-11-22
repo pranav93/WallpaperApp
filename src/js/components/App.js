@@ -11,6 +11,7 @@ const App = () => {
       <button
         onClick={async () => {
           const imageUrl = "https://source.unsplash.com/1600x900/?wallpaper";
+          electron.notificationApi.sendNotification("Getting wallpaper");
           const response = await fetch(imageUrl);
           const imageBlob = await response.blob();
           const reader = new FileReader();
@@ -19,10 +20,19 @@ const App = () => {
             const base64data = reader.result;
             console.log(base64data);
             setPictureData(base64data);
+            electron.notificationApi.sendNotification("Done");
           };
         }}
       >
         New wallpaper
+      </button>
+      <button
+        onClick={() => {
+          electron.filesApi.saveFile(pictureData);
+          electron.notificationApi.sendNotification("Saved");
+        }}
+      >
+        Save to disk
       </button>
       <Picture data={pictureData}></Picture>
     </>
