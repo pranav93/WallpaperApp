@@ -30,12 +30,6 @@ const App = () => {
         onClick={() => {
           electron.filesApi.saveFile(pictureData);
           electron.notificationApi.sendNotification("Saved");
-        }}
-      >
-        Save to disk
-      </button>
-      <button
-        onClick={() => {
           electron.shellApi.setWallpaper();
           electron.notificationApi.sendNotification("Applied wallpaper");
         }}
