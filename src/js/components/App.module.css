@@ -5,18 +5,18 @@
 .AppContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
 }
 
 .ActionContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 50px;
-  justify-content: space-evenly;
+  /* height: 50px; */
+  justify-content: flex-end;
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  width: 90%;
+button {
+  padding: 10px;
 }
