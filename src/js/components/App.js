@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "./App.module.css";
 import Display from "./Display";
@@ -32,6 +32,10 @@ const App = () => {
     electron.shellApi.setWallpaper(wallpaperName);
     electron.notificationApi.sendNotification("Applied wallpaper");
   };
+
+  useEffect(() => {
+    downloadWallpaper();
+  }, []);
 
   return (
     <div className={styles.AppContainer}>
