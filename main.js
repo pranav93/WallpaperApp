@@ -1,7 +1,13 @@
 const { win, BrowserWindow, app, ipcMain, Notification } = require("electron");
 const path = require("path");
-
+const fs = require("fs");
+// /home/$USER/Pictures/.wallpapers
 function createWindow() {
+  let dir = `/home/${process.env["USER"]}/Pictures/.wallpapers`;
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
+
   const win = new BrowserWindow({
     width: 1400,
     height: 850,

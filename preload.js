@@ -15,11 +15,11 @@ contextBridge.exposeInMainWorld("electron", {
         var data = img.replace(/^data:image\/\w+;base64,/, "");
         var buf = Buffer.from(data, "base64");
         fs.writeFileSync(
-          `/home/pranav/Pictures/${name}`,
+          `/home/${process.env["USER"]}/Pictures/.wallpapers/${name}`,
           buf /* callback will go here */
         );
       } catch (e) {
-        console.log(e);
+        alert(e);
         alert("Failed to save the file !");
       }
     },
@@ -27,7 +27,7 @@ contextBridge.exposeInMainWorld("electron", {
   shellApi: {
     setWallpaper(filename) {
       exec(
-        "gsettings set org.gnome.desktop.background picture-uri file:////home/pranav/Pictures/",
+        `gsettings set org.gnome.desktop.background picture-uri file:////home/${process.env["USER"]}/Pictures/`,
         (error, stdout, stderr) => {
           // debugger;
           console.log("Inside wall");
@@ -42,7 +42,7 @@ contextBridge.exposeInMainWorld("electron", {
 
           console.log(`stdout: ${stdout}`);
           exec(
-            `gsettings set org.gnome.desktop.background picture-uri file:////home/pranav/Pictures/${filename}`,
+            `gsettings set org.gnome.desktop.background picture-uri file:////home/${process.env["USER"]}/Pictures/.wallpapers/${filename}`,
             (error, stdout, stderr) => {
               // debugger;
               console.log("Inside wall 2");
