@@ -3,9 +3,15 @@ const path = require("path");
 const fs = require("fs");
 // /home/$USER/Pictures/.wallpapers
 function createWindow() {
-  let dir = `/home/${process.env["USER"]}/Pictures/.wallpapers`;
+  const dir = `/home/${process.env["USER"]}/Pictures/.wallpapers`;
+  const cacheFile = `${dir}/cache.json`;
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
+    let data = {
+      files: {},
+      recentFile: "",
+    };
+    fs.writeFileSync(cacheFile, JSON.stringify(data), "utf8");
   }
 
   const win = new BrowserWindow({
