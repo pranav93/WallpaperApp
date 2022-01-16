@@ -28,6 +28,7 @@ const App = () => {
 
   const setWallpaper = () => {
     electron.filesApi.saveFile(wallpaperData, wallpaperName);
+    electron.filesApi.saveMetadataToJson(wallpaperName);
     electron.notificationApi.sendNotification("Saved");
     electron.shellApi.setWallpaper(wallpaperName);
     electron.notificationApi.sendNotification("Applied wallpaper");

@@ -16,12 +16,28 @@ contextBridge.exposeInMainWorld("electron", {
         var buf = Buffer.from(data, "base64");
         fs.writeFileSync(
           `/home/${process.env["USER"]}/Pictures/.wallpapers/${name}`,
-          buf /* callback will go here */
-        );
+          buf
+        ); // TODO make async
       } catch (e) {
         alert(e);
         alert("Failed to save the file !");
       }
+    },
+    saveMetadataToJson(name) {
+      const dir = `/home/${process.env["USER"]}/Pictures/.wallpapers`;
+      const cacheFile = `${dir}/cache.json`;
+      fs.readFile(cacheFile, "utf8", function readFileCallback(err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          obj = JSON.parse(data); //now it an object
+          const timeStamp = +new Date();
+          obj.files[timeStamp] = name; //add some data
+          obj.recentFile = name;
+          json = JSON.stringify(obj); //convert it back to json
+          fs.writeFileSync(cacheFile, json, "utf8"); // TODO make async
+        }
+      });
     },
   },
   shellApi: {
