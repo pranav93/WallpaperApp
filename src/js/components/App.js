@@ -30,6 +30,7 @@ const App = () => {
     electron.notificationApi.sendNotification("Getting wallpaper");
     const response = await fetch(imageUrl);
     const imageBlob = await response.blob();
+    debugger;
     let photoId = response.url.match(/photo.*/g)[0];
     const reader = new FileReader();
     reader.readAsDataURL(imageBlob);
