@@ -39,6 +39,19 @@ contextBridge.exposeInMainWorld("electron", {
         }
       });
     },
+    getRecentWallpaper() {
+      const dir = `/home/${process.env["USER"]}/Pictures/.wallpapers`;
+      const cacheFile = `${dir}/cache.json`;
+      const data = fs.readFileSync(cacheFile, "utf8");
+      obj = JSON.parse(data); //now it an object
+      if (obj.recentFile === "") {
+        return {
+          exists: false,
+          url: "",
+        };
+      }
+      return { exists: true, url: `${dir}/${obj.recentFile}` };
+    },
   },
   shellApi: {
     setWallpaper(filename) {
