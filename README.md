@@ -8,7 +8,7 @@
 
 - [x] Working app
 - [x] Store wallpaper history in cache
-- [ ] Show recent wallpaper on app restart
+- [x] Show recent wallpaper on app start
 - [ ] Show downloaded wallpapers in cache
 - [ ] Apply downloaded wallpapers in cache
 - [ ] Better CSS
