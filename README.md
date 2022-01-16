@@ -1,7 +1,8 @@
 # Wallpaper App
 
 - Wrote with electron, reactjs
-- Run with command "npm run start"
+- Build with command `npm run watch`
+- Run with command `npm run start`
 - Works only with ubuntu right now
 
 ## todos
